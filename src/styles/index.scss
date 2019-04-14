@@ -243,3 +243,15 @@ h1,h2,h3,h4{
     .el-progress{flex: 1;}
   }
 }
+
+.bar1 {
+  background-color: #f3f3f3;
+  padding: 10px 10px;
+}
+.danger{color: #f00;}
+.btnPanel{padding: 10px;}
+.du_bar_filter{
+		.search_bar{flex:0 0 34%}
+    .left_bar{flex:0 0 65%}
+    .published_bar{width: 180px;}
+	}

@@ -1,15 +1,14 @@
 <template>
   <div class="app-container">
-    报表1
-    <vue-tinymce ref="tinymce" v-model="content" :setting="setting">
-    </vue-tinymce>
-    <!-- <table>
-      <tr v-for="item in list" :key="item.id">
-        <td> {{ item.id }} </td>
-        <td> {{ item.author }} </td>
-        <td> {{ item.title }} </td>
-      </tr>
-    </table> -->
+    <h1>
+      栏目：{{rtit}}
+    </h1>
+    <h2>
+      序号:{{rid}}|API:{{api}}
+    </h2>
+    <br>
+    <rlink href="/news/1">1</rlink>
+    <rlink href="/news/2">2</rlink>
   </div>
 </template>
 
@@ -42,8 +41,19 @@ export default {
         },
     }
   },
+  computed: {
+    api(){
+      return this.$route.meta.api
+    },
+    rid(){
+      return this.$route.params.id
+    },
+    rtit(){
+      return this.$route.meta.sub[this.$route.params.id]
+    }
+  },
   mounted() {
-    console.log("------",this.vueTinymce);
+    console.log("------",this.$route.meta.sub,this.$route.params.id);
     
     /* fetchList(this.listQuery).then(response => {
       this.list = response.data.items

@@ -1,4 +1,9 @@
 //覆盖一些element-ui样式
+.el-table--medium td {
+  padding: 5px 0;
+}
+.el-button--medium{padding: 10px 15px;}
+.el-pagination{text-align: center;}
 
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
@@ -31,7 +36,6 @@
 .fixed-width {
   .el-button--mini {
     padding: 7px 10px;
-    width: 60px;
   }
 }
 

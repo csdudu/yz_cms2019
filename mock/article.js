@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 const List = []
 const du_list = []
-const count = 50
+const count = 5
 
 const baseContent = '<p>我是测试数据我是测试数据</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
 const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
@@ -12,10 +12,10 @@ for (let i = 0; i < count; i++) {
     pid: '@increment',
     timestamp: '@datetime',
     author: '@cname',
-    title: '@ctitle(5, 10)',
-    content_short: '@csentence(20, 50)',
-    content: '@cparagraph(20, 50)',
-    published: '@boolean()',
+    title: '@ctitle(10, 40)',
+    // content_short: '@csentence(20, 50)',
+    // content: '@cparagraph(20, 50)',
+    published: '@integer(0,1)',
     'order|1-20': 1
   }))
 }
@@ -49,16 +49,15 @@ export default [
     type: 'get',
     response: config => {
       const { published, title, page = 1, limit = 10, sort } = config.query
-
       let mockList = du_list.filter(item => {
-        if (published && item.published !== published) return false
-        if (title && item.title.indexOf(title) < 0) return false
+        
+        if (published>-1 && item.published != published)
+         {
+           return false
+          }
+        if (title && item.title.indexOf(title) < 0) {return false}
         return true
       })
-
-      if (sort === '-id') {
-        mockList = mockList.reverse()
-      }
 
       const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
 
@@ -66,7 +65,7 @@ export default [
         code: 20000,
         data: {
           total: mockList.length,
-          items: pageList
+          list: pageList
         }
       }
     }
@@ -144,14 +143,68 @@ export default [
       }
     }
   },
-
   {
-    url: '/article/update',
+    url: '/delList',
     type: 'post',
     response: _ => {
       return {
         code: 20000,
-        data: 'success'
+        data: {
+          total: du_list.length,
+          list: du_list
+        }
+      }
+    }
+  },
+  {
+    url: '/delPic',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: {
+          total: du_list.length,
+          list: du_list
+        }
+      }
+    }
+  },
+  {
+    url: '/publishList',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: {
+          total: du_list.length,
+          list: du_list
+        }
+      }
+    }
+  },
+  {
+    url: '/stopPublishList',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: {
+          total: du_list.length,
+          list: du_list
+        }
+      }
+    }
+  },
+  {
+    url: '/sortList',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: {
+          total: du_list.length,
+          list: du_list
+        }
       }
     }
   }

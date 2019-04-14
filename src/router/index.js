@@ -70,21 +70,21 @@ export const constantRoutes = [
     children: [{
       path: 'index',
       component: () => import('@/views/du_home/index'),
-      name: 'home',
+      name: 'Dashboard',
       meta: {
         title: '后台首页',
         icon: 'tab'
       }
     }]
   },
-  {
+  /*{
     path: '',
     component: Layout,
     redirect: 'dashboard',
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index'),
-      name: 'Dashboard',
+      name: 'Dashboard_bak',
       meta: {
         title: 'dashboard',
         icon: 'dashboard',
@@ -93,7 +93,7 @@ export const constantRoutes = [
       }
     }]
   }
-  /*,
+  ,
     {
       path: '/documentation',
       component: Layout,
@@ -164,43 +164,65 @@ export const asyncRoutes = [
   }, */
 
   {
-    path: '/forms',
+    path: '/news',
     component: Layout,
     alwaysShow: true,
     meta: {
-      title: '报表查询2',
+      title: '新闻中心',
       icon: 'lock',
       roles: ['admin'] // you can set roles in root nav
     },
-    children: [{
-        path: 'complex-table',
-        component: () => import('@/views/table/complexTable'),
-        name: 'ComplexTable',
-        meta: {
-          title: '综合表格',
-          icon: 'icon',
-          noCache: true
-        }
+    children: [
+      {
+        path: '/news/:id',
+        component: () => import('@/views/list'),
+        name: 'news',
+        hidden: true, 
+        meta: { api:"news",sub: ['公司新闻', '行业新闻'] }
       },
       {
-        path: 'forms1',
-        component: () => import('@/views/du_forms/index'),
-        name: 'forms1',
-        meta: {
-          title: '报表一',
-          icon: 'icon',
-          noCache: true
-        }
+        path: '/news/0',
+        component: () => import('@/views/list'),
+        meta: { title: '公司新闻', icon: 'icon', noCache: true }
       },
       {
-        path: 'forms2',
-        component: () => import('@/views/du_forms/forms2'),
-        name: 'forms2',
-        meta: {
-          title: '报表二',
-          icon: 'icon',
-          noCache: true
-        }
+        path: '/news/1',
+        component: () => import('@/views/list'),
+        meta: { title: '行业新闻', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/laws',
+    component: Layout,
+    alwaysShow: true,
+    meta: {
+      title: '法规中心',
+      icon: 'lock',
+      roles: ['admin'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: '/laws/:id',
+        component: () => import('@/views/list'),
+        name: 'news',
+        hidden: true, 
+        meta: { api:"laws",sub: ['国家法规', '行业法规', '案例分析'] }
+      },
+      {
+        path: '/laws/0',
+        component: () => import('@/views/list'),
+        meta: { title: '国家法规', icon: 'icon', noCache: true }
+      },
+      {
+        path: '/laws/1',
+        component: () => import('@/views/list'),
+        meta: { title: '行业法规', icon: 'icon', noCache: true }
+      },
+      {
+        path: '/laws/2',
+        component: () => import('@/views/list'),
+        meta: { title: '案例分析', icon: 'icon', noCache: true }
       }
     ]
   },
@@ -211,7 +233,7 @@ export const asyncRoutes = [
   nestedRouter,
   tableRouter,
   treeTableRouter,*/
-    /* {
+     {
       path: '/example',
       component: Layout,
       redirect: '/example/list',
@@ -242,7 +264,7 @@ export const asyncRoutes = [
         }
       ]
     },
-
+/*
     
 
     {

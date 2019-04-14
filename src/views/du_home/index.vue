@@ -4,7 +4,7 @@
       <el-col :span="10">
         <div class="bar_info">
           <h2>{{overall[0].tit}}</h2>
-          <h1>{{overall[0].val|cDateFull}}</h1>
+          <h1>{{overall[0].val | cDateFull}}</h1>
         </div>
       </el-col>
       

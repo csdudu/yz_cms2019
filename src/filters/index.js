@@ -50,3 +50,8 @@ export function cDate(str) {
   let _final = moment(str).format("YYYY年MM月DD日");
   return _final
 }
+
+export function cDateMini(str) {
+  let _final = moment(str).format("YYYY-MM-DD");
+  return _final
+}
